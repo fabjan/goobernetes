@@ -46,7 +46,7 @@ index 72a2c36..c6211ba 100644
 
 ## Why?
 
-* I find YAML patching hard to reason about
+* I find YAML patching harder to reason about than calling functions
 * Important dependencies are easier to see in code than spread out templates
 * There are more tools around to analyze your code
 
