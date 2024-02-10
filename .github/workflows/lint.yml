@@ -1,0 +1,21 @@
+name: lint
+
+on: [push]
+
+jobs:
+
+  check-checked-in:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+        with:
+          go-version: 1.22
+      - run: |
+          cd /tmp
+          curl -LO https://github.com/itaysk/kubectl-neat/releases/download/v2.0.3/kubectl-neat_linux_amd64.tar.gz
+          tar zxf kubectl-neat_linux_amd64.tar.gz
+          mv /tmp/kubectl-neat /usr/local/bin
+      - run: make generate
+      - run: make
+      - run: git diff --exit-code --color
