@@ -18,4 +18,4 @@ jobs:
           mv /tmp/kubectl-neat /usr/local/bin
       - run: make generate
       - run: make
-      - run: git status | grep "nothing to commit, working tree clean"
+      - run: git diff --exit-code
