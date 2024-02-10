@@ -19,3 +19,14 @@ jobs:
       - run: make generate
       - run: make
       - run: git diff --exit-code --color
+
+  lint-manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd /tmp
+          curl -LO https://github.com/stackrox/kube-linter/releases/download/v0.6.7/kube-linter-linux.tar.gz
+          tar zxf kube-linter-linux.tar.gz
+          mv /tmp/kube-linter /usr/local/bin
+      - run: kube-linter lint k8s.*.yaml
