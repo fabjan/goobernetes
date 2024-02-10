@@ -196,7 +196,7 @@ func printOrDie(printer printers.ResourcePrinter, obj runtime.Object) {
 
 func renderApp(printer printers.ResourcePrinter, servicePort int, replicas int32) {
 
-	echoPort := 3000
+	echoPort := 3003
 	args := []string{"-text=hello", "-listen=:" + strconv.Itoa(echoPort)}
 	echo := Pod("100m", "32Mi", "echo", "hashicorp/http-echo:1.0", map[string]string{}, args)
 
