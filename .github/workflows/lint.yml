@@ -1,0 +1,19 @@
+name: lint
+
+on: [push]
+
+jobs:
+
+  check-checked-in:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+        with:
+          go-version: 1.22
+      - run: |
+          curl -LO https://github.com/itaysk/kubectl-neat/releases/download/v2.0.3/kubectl-neat_linux_amd64.tar.gz
+          tar zxf kubectl-neat_linux_amd64.tar.gz
+          mv ./kubectl-neat /usr/local/bin
+      - run: make
+      - run: git status | grep "nothing to commit, working tree clean"
