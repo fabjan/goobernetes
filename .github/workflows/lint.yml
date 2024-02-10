@@ -12,8 +12,11 @@ jobs:
         with:
           go-version: 1.22
       - run: |
+          cd /tmp
           curl -LO https://github.com/itaysk/kubectl-neat/releases/download/v2.0.3/kubectl-neat_linux_amd64.tar.gz
           tar zxf kubectl-neat_linux_amd64.tar.gz
-          mv ./kubectl-neat /usr/local/bin
+          mv /tmp/kubectl-neat /usr/local/bin
+      - run: make generate
       - run: make
-      - run: git status | grep "nothing to commit, working tree clean"
+      - run: git status
+      - run: git diff
